@@ -1,0 +1,18 @@
+.leftSideBar {
+  margin-left: 0;
+}
+
+.leftSideBar {
+  margin-right: 0;
+}
+
+.rightSideBar,
+.leftSideBar {
+  height: auto;
+  width: 35%;
+  background-color: beige;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-content: space-around;
+}
