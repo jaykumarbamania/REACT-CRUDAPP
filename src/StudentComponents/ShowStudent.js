@@ -15,7 +15,12 @@ import { Button, Icon, Paper, TextField } from '@material-ui/core';
 
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import { SearchOutlined } from '@material-ui/icons';
+import { 
+    ArrowDownward, 
+    ArrowUpward, 
+    SearchOutlined 
+  } from '@material-ui/icons';
+
 import SearchComponent from './SearchComponent';
 
 export default function ShowStudent() {
@@ -39,6 +44,34 @@ export default function ShowStudent() {
         
         setSearchingState(true);
     }
+    let [idSort, setIdSort] = useState(true)
+    let OnIdSorting = () =>{
+      setIdSort(!idSort);
+      !idSort ? stuArr.sort((a, b) => a.id > b.id ? 1 : -1):
+      stuArr.sort((a, b) => a.id < b.id ? 1 : -1)
+    }
+
+    let [nameSort, setNameSort] = useState(true)
+    let OnNameSorting = () =>{
+      setNameSort(!nameSort);
+      !nameSort ? stuArr.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase())):
+      stuArr.sort((a, b) => b.name.toLowerCase().localeCompare(a.name.toLowerCase()))
+    }
+
+    let [departmentSort, setDepartmentSort] = useState(true)
+    let OnDepartmentSorting = () =>{
+      setDepartmentSort(!departmentSort);
+      !departmentSort ? stuArr.sort((a, b) => a.department.toLowerCase().localeCompare(b.department.toLowerCase())):
+      stuArr.sort((a, b) => b.department.toLowerCase().localeCompare(a.department.toLowerCase()))
+    }
+
+    let [standardSort, setStandardSort] = useState(true)
+    let OnStandardSorting = () =>{
+      setStandardSort(!standardSort);
+      !standardSort ? stuArr.sort((a, b) => a.standard.toLowerCase().localeCompare(b.standard.toLowerCase())):
+      stuArr.sort((a, b) => b.standard.toLowerCase().localeCompare(a.standard.toLowerCase()))
+    }
+
   return (
 
     <>
@@ -66,10 +99,26 @@ export default function ShowStudent() {
           <TableHead>              
             <TableRow>  
               {/* <TableCell>Id</TableCell>   */}
-              <TableCell align="center">Id</TableCell>  
-              <TableCell align="center">Name</TableCell>  
-              <TableCell align="center">Department</TableCell>  
-              <TableCell align="center">Standard</TableCell>  
+              <TableCell align="center">
+                  <Button size='small' onClick={OnIdSorting}>
+                    Id {idSort ? <ArrowUpward /> : <ArrowDownward/>}
+                  </Button> 
+              </TableCell>  
+              <TableCell align="center">
+                <Button size='small' onClick={OnNameSorting}>
+                  Name {nameSort ? <ArrowUpward /> : <ArrowDownward/>}
+              </Button>
+              </TableCell> 
+              <TableCell align="center">
+                <Button size='small' onClick={OnDepartmentSorting}>
+                  Department {departmentSort ? <ArrowUpward /> : <ArrowDownward/>}
+              </Button>
+              </TableCell>   
+              <TableCell align="center">
+                <Button size='small' onClick={OnStandardSorting}>
+                  Standard {standardSort ? <ArrowUpward /> : <ArrowDownward/>}
+              </Button>
+              </TableCell>   
               <TableCell  align="center">Edit</TableCell>  
               <TableCell  align="center">Delete</TableCell>  
             </TableRow>            

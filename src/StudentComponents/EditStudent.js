@@ -2,17 +2,30 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useParams } from 'react-router-dom';
 import { getStudent, showStudents, updateStudent } from '../actions';
-import { Student } from '../classes/Student';
 
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import { InputAdornment, Typography } from '@material-ui/core';
+import { Book, LocalLibrary, PermIdentity, Person, Update } from '@material-ui/icons';
+
+// import AttributionIcon from '@mui/icons-material/Attribution';
+
 
 export default function EditStudent() {
     let mystyles = {
         inputStyle:{
             marginBottom:"10px",
             minWidth:"300px"
+        },
+        editstudent:{
+            marginTop:"20px",
+            display:"flex",
+            flexDirection:"column",
+            justifyContent:"space-around"
+        },
+        icons:{
+            color:"#3f51b5"
         }
     }
     let {id} = useParams();
@@ -52,6 +65,10 @@ export default function EditStudent() {
   return (
     <>
     {!flag ? 
+        <div style={mystyles.editstudent}>
+        <Typography variant='h4' color="primary" >
+            Edit Student 
+        </Typography>
          <form onSubmit={onSubmit} method="post">
          <Grid container alignItems="center" style={{marginBottom:"10px"}} justify="center" direction="column">
                     <Grid item>
@@ -64,6 +81,13 @@ export default function EditStudent() {
                             onChange={handleChange}
                             style={mystyles.inputStyle}
                             focused
+                            InputProps={{
+                                startAdornment: (
+                                  <InputAdornment position="start">
+                                    <PermIdentity style={mystyles.icons} />
+                                  </InputAdornment>
+                                ),
+                              }}
                         />
                     </Grid>
                     <Grid item>
@@ -76,6 +100,13 @@ export default function EditStudent() {
                             onChange={handleChange}
                             style={mystyles.inputStyle}
                             focused
+                            InputProps={{
+                                startAdornment: (
+                                  <InputAdornment position="start">
+                                    <Person style={mystyles.icons} />
+                                  </InputAdornment>
+                                ),
+                              }}
                         />
                     </Grid>
                     <Grid item>
@@ -88,7 +119,13 @@ export default function EditStudent() {
                             onChange={handleChange}
                             style={mystyles.inputStyle}
                             focused
-                              
+                            InputProps={{
+                                startAdornment: (
+                                  <InputAdornment position="start">
+                                    <LocalLibrary style={mystyles.icons} />
+                                  </InputAdornment>
+                                ),
+                              }}
                         />
                     </Grid>
                     <Grid item>
@@ -101,13 +138,20 @@ export default function EditStudent() {
                             onChange={handleChange}
                             style={mystyles.inputStyle}
                             focused
+                            InputProps={{
+                                startAdornment: (
+                                  <InputAdornment position="start">
+                                    <Book style={mystyles.icons} />
+                                  </InputAdornment>
+                                ),
+                              }}
                         />
                     </Grid>
-                    <Button variant="outlined" color="primary" type="submit">
+                    <Button variant="outlined" color="primary" type="submit" startIcon={<Update />}>
                         Update
                     </Button>
                 </Grid>
-     </form>:
+     </form> <div /> </div>:
      <Navigate to={"/students"} />    
 }
   </>

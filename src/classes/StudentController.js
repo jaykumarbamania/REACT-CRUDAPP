@@ -6,7 +6,9 @@ export class StudentController{
 
     constructor(){
         this.stuSet.add(new Student(101,'Jaykumar','CE','BE'))
-        this.stuSet.add(new Student(102,'Devang','CE','BE'))
+        this.stuSet.add(new Student(102,'Devang','ME','ME'))
+        this.stuSet.add(new Student(353,'Manish','IT','BTech'))
+        this.stuSet.add(new Student(252,'Sailesh','CS','Diploma'))
     }
 
     getAllStudents(){
